@@ -1,6 +1,14 @@
 const fruitBtn = document.getElementById('popFruit');
+let hasLanded = false;
+
+// Wait for fall animation to complete
+setTimeout(() => {
+  hasLanded = true;
+}, 2000);
 
 fruitBtn.addEventListener('click', () => {
+  if (!hasLanded) return; // Don't interact until fruit has landed
+  
   // Bounce animation
   fruitBtn.classList.remove('clicked');
   void fruitBtn.offsetWidth; // Force reflow to restart animation
@@ -35,7 +43,7 @@ fruitBtn.addEventListener('click', () => {
     border-radius: 50px;
     font-size: 1.3rem;
     font-weight: 600;
-    z-index: 1000;
+    z-index: 1001;
     animation: fadeInOut 2s ease-in-out forwards;
   `;
   
