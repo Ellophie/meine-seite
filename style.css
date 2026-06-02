@@ -40,18 +40,34 @@ body {
   box-shadow: 0 24px 60px rgba(31, 45, 34, 0.08);
 }
 
-.hero-image-wrap {
+.hero-image-wrap,
+.card-figure {
+  margin: 0;
   overflow: hidden;
   border-radius: 24px;
   box-shadow: 0 16px 38px rgba(31, 45, 34, 0.1);
+  background: #e2eadb;
 }
 
-.hero-image {
+.hero-image,
+.card-figure img {
   width: 100%;
   display: block;
   object-fit: cover;
   object-position: center;
+}
+
+.hero-image {
   aspect-ratio: 4 / 3;
+}
+
+.card-figure img {
+  aspect-ratio: 16 / 10;
+  transition: transform 0.35s ease;
+}
+
+.card-figure img:hover {
+  transform: scale(1.03);
 }
 
 .hero-title-image {
@@ -61,6 +77,8 @@ body {
   margin-bottom: 1.4rem;
   display: block;
   box-shadow: 0 14px 32px rgba(31, 45, 34, 0.1);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .eyebrow {
@@ -88,97 +106,65 @@ body {
 .fruit-container {
   margin-top: 2rem;
   position: fixed;
-  top: 1rem;
+  top: 1.5rem;
   right: 1.5rem;
   z-index: 100;
-  width: 8rem;
-  height: 10rem;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.tree-top {
-  position: absolute;
-  top: 0;
-  font-size: 4.5rem;
-  z-index: 1;
-  filter: drop-shadow(0 10px 16px rgba(31, 45, 34, 0.18));
 }
 
 .fruit {
-  position: absolute;
-  top: 2.2rem;
-  font-size: 4.8rem;
+  font-size: 6rem;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  width: 6rem;
-  height: 6rem;
+  display: block;
+  width: 7rem;
+  height: 7rem;
+  animation: fall 1.8s ease-out forwards;
+  transform-origin: center;
+  transition: transform 0.2s ease;
   line-height: 1;
   text-align: center;
-  z-index: 2;
-  transform-origin: center;
-  animation: fruitFall 1.9s ease-out forwards;
+  padding-top: 0.3rem;
 }
 
 .fruit:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 .fruit.clicked {
-  animation: fruitBounce 0.6s ease;
+  animation: bounce 0.6s ease;
 }
 
-@keyframes fruitFall {
+@keyframes fall {
   0% {
-    transform: translateY(-180px) rotate(-40deg);
-    opacity: 0;
+    transform: translateY(-140px) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1) translateX(0);
   }
 
   25% {
-    opacity: 1;
+    transform: scale(1.15) translateX(-20px);
+  }
+
+  50% {
+    transform: scale(1.1) translateX(0);
   }
 
   75% {
-    transform: translateY(70px) rotate(260deg);
+    transform: scale(1.15) translateX(-10px);
   }
-
-  100% {
-    transform: translateY(58px) rotate(360deg);
-    opacity: 1;
-  }
-}
-
-@keyframes fruitBounce {
-  0%,
-  100% {
-    transform: translateY(58px) scale(1);
-  }
-
-  30% {
-    transform: translateY(42px) scale(1.18);
-  }
-
-  60% {
-    transform: translateY(62px) scale(0.95);
-  }
-}
-
-.fruit-message {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(27, 50, 30, 0.95);
-  color: #eaf8ea;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  z-index: 1001;
-  animation: fadeInOut 2s ease-in-out forwards;
 }
 
 .card {
@@ -191,26 +177,6 @@ body {
   padding: 1.6rem;
   margin-bottom: 1.5rem;
   align-items: center;
-}
-
-.card-figure {
-  margin: 0;
-  overflow: hidden;
-  border-radius: 22px;
-  box-shadow: 0 16px 38px rgba(31, 45, 34, 0.1);
-}
-
-.card-figure img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-  aspect-ratio: 16 / 10;
-  transition: transform 0.35s ease;
-}
-
-.card-figure img:hover {
-  transform: scale(1.03);
 }
 
 .card-copy h2 {
@@ -276,19 +242,13 @@ body {
   }
 
   .fruit-container {
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 6.5rem;
-    height: 8rem;
-  }
-
-  .tree-top {
-    font-size: 3.5rem;
+    top: 0.75rem;
+    right: 0.75rem;
   }
 
   .fruit {
-    width: 5rem;
-    height: 5rem;
-    font-size: 4rem;
+    width: 6rem;
+    height: 6rem;
+    font-size: 5rem;
   }
 }
