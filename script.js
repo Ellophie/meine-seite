@@ -43,24 +43,17 @@ if (fruitBtn) {
 
     const randomMsg = messages[Math.floor(Math.random() * messages.length)];
 
+    const oldMsg = document.querySelector(".fruit-message");
+    if (oldMsg) oldMsg.remove();
+
     const msg = document.createElement("div");
+    msg.className = "fruit-message";
     msg.textContent = randomMsg;
-    msg.style.cssText = `
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(27, 50, 30, 0.95);
-      color: #eaf8ea;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      font-size: 1.3rem;
-      font-weight: 600;
-      z-index: 1001;
-      animation: fadeInOut 2s ease-in-out forwards;
-    `;
 
     document.body.appendChild(msg);
-    setTimeout(() => msg.remove(), 2000);
+
+    setTimeout(() => {
+      msg.remove();
+    }, 2000);
   });
 }
