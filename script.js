@@ -1,27 +1,49 @@
-const seasonButton = document.getElementById("seasonButton");
+const fruitBtn = document.getElementById("popFruit");
+let hasLanded = false;
 
-if (seasonButton) {
-  seasonButton.addEventListener("click", () => {
-    const offers = [
-      "Diese Woche frisch: Karotten, Kartoffeln und saisonale Äpfel.",
-      "Aktuell erhältlich: Bio-Eier, frisches Brot und hausgemachte Konfitüre.",
-      "Vom Feld in den Laden: Salat, Kräuter und regionales Gemüse.",
-      "Saisonal im Angebot: Kürbis, Lauch und frische Hofprodukte."
+setTimeout(() => {
+  hasLanded = true;
+}, 1900);
+
+if (fruitBtn) {
+  fruitBtn.addEventListener("click", () => {
+    if (!hasLanded) return;
+
+    fruitBtn.classList.remove("clicked");
+    void fruitBtn.offsetWidth;
+    fruitBtn.classList.add("clicked");
+
+    const products = [
+      "🍎", "🍐", "🍊", "🍋", "🍌", "🍓", "🫐", "🍒", "🥝",
+      "🍅", "🥒", "🥕", "🥔", "🥬", "🥦", "🧅", "🧄", "🌽"
     ];
 
-    const randomOffer = offers[Math.floor(Math.random() * offers.length)];
+    const randomProduct = products[Math.floor(Math.random() * products.length)];
+    fruitBtn.textContent = randomProduct;
 
-    const oldToast = document.querySelector(".toast");
-    if (oldToast) oldToast.remove();
+    const messages = [
+      "Frisch geerntet! 🌱",
+      "Direkt vom Hof! 🚜",
+      "Saisonal und regional!",
+      "Bio-Qualität aus der Region!",
+      "Natürlich gewachsen!",
+      "Heute besonders frisch!",
+      "Kurze Wege, voller Geschmack!"
+    ];
 
-    const toast = document.createElement("div");
-    toast.className = "toast";
-    toast.textContent = randomOffer;
+    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
 
-    document.body.appendChild(toast);
+    const oldMsg = document.querySelector(".fruit-message");
+    if (oldMsg) oldMsg.remove();
+
+    const msg = document.createElement("div");
+    msg.className = "fruit-message";
+    msg.textContent = randomMsg;
+
+    document.body.appendChild(msg);
 
     setTimeout(() => {
-      toast.remove();
-    }, 2400);
+      msg.remove();
+    }, 2000);
   });
 }
