@@ -167,6 +167,21 @@ body {
   }
 }
 
+.fruit-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(27, 50, 30, 0.95);
+  color: #eaf8ea;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  z-index: 1001;
+  animation: fadeInOut 2s ease-in-out forwards;
+}
+
 .card {
   display: grid;
   grid-template-columns: 0.9fr 1.4fr;
@@ -250,5 +265,11 @@ body {
     width: 6rem;
     height: 6rem;
     font-size: 5rem;
+  }
+
+  .fruit-message {
+    width: calc(100% - 2rem);
+    text-align: center;
+    border-radius: 24px;
   }
 }
